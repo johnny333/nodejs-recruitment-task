@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+.full-height{
+  height: 100vh;
+}
+.scrollable-content{
+  max-height: 90vh;
+  overflow-y: auto;
+}
+// 1. Colors
+// ==========================================================================
+
+$primary-color: #141414;
+
+$button-background-focus: #ede7f6;
+$success-color: color("green", "base") ;
+$error-color: color("red", "base") ;
+$link-color: color("light-blue", "darken-1") ;
+
+$fa-font-path: "../node_modules/font-awesome/fonts";
+$roboto-font-path: "../node_modules/materialize-css/dist/fonts/roboto/";
+
+
+@import "../node_modules/font-awesome/scss/font-awesome";
+@import "../node_modules/normalize.css/normalize.css";
+@import "../node_modules/materialize-css/sass/materialize";
