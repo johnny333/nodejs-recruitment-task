@@ -1,18 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { MoviesService } from './services/movies/movies.service';
 declare let $: any;
-declare let Materialize: any;
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'app';
 
-  constructor() {
+  constructor(public moviesService: MoviesService) {
   }
 
   ngOnInit(): void {
+  }
+
+  public openModal(){
+    console.log("modal",$('.modal'))
+    $(document).ready(function() {
+      $('.modal').modal();
+    });
   }
 }
