@@ -1,9 +1,9 @@
 import { Controller, Get, HttpStatus, Param, Post, Res } from '@nestjs/common';
 import { AxiosResponse } from '@nestjs/common/http/interfaces/axios.interfaces';
-import { IMovieBase } from './interfaces/movie.base.interface';
-import { IMovie } from './interfaces/movie.interface';
 import { MovieService } from './services/movie.service';
 import { OmdbApiService } from './services/omdb-api.service';
+import { IMovieBase } from '../../interfaces/movie.base.interface';
+import { IMovie } from '../../interfaces/movie.interface';
 
 @Controller('movies')
 export class AppController {
@@ -31,7 +31,14 @@ export class AppController {
     });
   }
 
-  @Post(':omdbId')
+  @Get('omdb_id/:omdbId')
+  public async getMovie(@Param('omdbId') omdbId, @Res() res) {
+    this.omdbApi.getMovieByOmdbId(omdbId).subscribe((movie: AxiosResponse<IMovie>) => {
+      res.status(HttpStatus.OK).json(movie.data)
+    });
+  }
+
+  @Post('omdb_id/:omdbId')
   public async saveMovie(@Param('omdbId') omdbId, @Res() res) {
     this.omdbApi.getMovieByOmdbId(omdbId).subscribe((movie: AxiosResponse<IMovie>) => {
       let movieData: IMovie = movie.data;

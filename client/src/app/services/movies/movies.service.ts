@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/index';
-import { IMovie } from '../../../../../backend/src/interfaces/movie.interface';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs/index';
 import { environment } from '../../../environments/environment';
-
+import { IMovie } from '../../../../../interfaces/movie.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,12 +12,20 @@ export class MoviesService {
 
   constructor(private http: HttpClient) {
     this.movies = new BehaviorSubject([]);
-    this.search();
+    this.getAll();
   }
 
-  public search = () => {
+  public getAll = () => {
     this.http.get(`${environment.backend}/movies`).subscribe((result: Array<IMovie>) => {
       this.movies.next(result);
     })
+  };
+
+  public search = (title: string) => {
+    return this.http.get(`${environment.backend}/movies/search/${title}`)
+  };
+
+  public getByOmdbId = (omdbId: string) => {
+    return this.http.get(`${environment.backend}/movies/omdb_id/${omdbId}`)
   }
 }

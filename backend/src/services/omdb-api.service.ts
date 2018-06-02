@@ -1,9 +1,9 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { AxiosResponse } from '@nestjs/common/http/interfaces/axios.interfaces';
 import { Observable } from 'rxjs/index';
-import { IMovieBase } from '../../../client/src/app/interfaces/movie.base.interface';
-import { IMovie } from '../interfaces/movie.interface';
 import { PropertiesService } from './properties.service';
+import { IMovieBase } from '../../../interfaces/movie.base.interface';
+import { IMovie } from '../../../interfaces/movie.interface';
 
 /**
  * Created by jakubkolecki on 01.06.2018.
