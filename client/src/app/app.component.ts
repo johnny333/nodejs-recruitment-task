@@ -10,7 +10,7 @@ declare let $: any;
 export class AppComponent implements OnInit {
   title = 'app';
   public searchResult: Array<IMovieBase> = [];
-  public selectedMovie: IMovieBase  = null;
+  public selectedMovie: IMovieBase = null;
 
   constructor(public moviesService: MoviesService) {
   }
@@ -37,5 +37,16 @@ export class AppComponent implements OnInit {
 
   chooeseMovie = (movie: IMovieBase) => {
     this.selectedMovie = movie;
+  }
+  ifActive = (movie: IMovieBase) => {
+    if (!!this.selectedMovie && movie.imdbID == this.selectedMovie.imdbID) {
+      return 'active';
+    }
+    return 'background-color-search-table';
+  }
+
+  isPosterAvliable = (movie: IMovieBase) => {
+    return movie.Poster != 'N/A';
+
   }
 }

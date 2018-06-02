@@ -21,33 +21,41 @@
   </div>
 </main>
 <footer>
-  <div class="fixed-action-btn direction-top active"  >
+  <div class="fixed-action-btn direction-top active">
     <a id="menu" class="btn-floating btn-large red pulse" (click)="openModal()">
       <i class="fa fa-plus"></i>
     </a>
   </div>
   <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer">
-    <div class="modal-content">
+    <div class="modal-content modal-content-no-scrollable">
       <h4>Dodaj nowe</h4>
       <div class="row">
-        <div class="col s6">
-          <div class="row">
-            <div class="input-field col s12">
+        <div class="col s6 modal-search-list">
+          <div class="row  ">
+            <div class="input-field">
               <input id="last_name" (input)="search($event.target.value)" type="text" class="validate">
               <label for="last_name">Tytuł</label>
             </div>
           </div>
-          <table class="bordered">
+          <table class="bordered collection">
             <tbody>
-            <tr  (click)="chooeseMovie(result)" *ngFor="let result of searchResult">
+            <tr class="collection-item  {{ifActive(result)}}" (click)="chooeseMovie(result)" *ngFor="let result of searchResult">
               <td> {{result.Title}}</td>
             </tr>
             </tbody>
           </table>
+
         </div>
-        <div class="col s6">
-          <img *ngIf="!!selectedMovie" [src]="selectedMovie?.Poster" alt="">
+        <div class="col s6 modal-search-list" *ngIf="!!selectedMovie" style="position: relative">
+          <div class="col s12" *ngIf="isPosterAvliable(selectedMovie)">
+            <img style="height: 300px;" [src]="selectedMovie?.Poster" alt="">
+          </div>
+          <div class="col s12" *ngIf="!isPosterAvliable(selectedMovie)">
+            <i class="fa fa-picture-o fa-10x" aria-hidden="true"></i>
+          </div>
+          <p>{{selectedMovie?.Title}}</p>
+          <p>{{selectedMovie?.Year}}</p>
         </div>
       </div>
     </div>

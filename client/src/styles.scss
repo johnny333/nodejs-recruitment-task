@@ -1,9 +1,25 @@
-.full-height{
+.full-height {
   height: 100vh;
 }
-.scrollable-content{
+
+.scrollable-content {
   max-height: 90vh;
   overflow-y: auto;
+}
+
+.modal-search-list {
+  max-height: 380px;
+  overflow-y: auto;
+}
+.modal-content-no-scrollable{
+  overflow-y: hidden!important;
+}
+.background-color-search-table{
+  background-color:transparent!important;
+}
+
+.fa-10x {
+  font-size: 10em;
 }
 // 1. Colors
 // ==========================================================================
@@ -11,13 +27,12 @@
 $primary-color: #141414;
 
 $button-background-focus: #ede7f6;
-$success-color: color("green", "base") ;
-$error-color: color("red", "base") ;
-$link-color: color("light-blue", "darken-1") ;
+$success-color: color("green", "base");
+$error-color: color("red", "base");
+$link-color: color("light-blue", "darken-1");
 
 $fa-font-path: "../node_modules/font-awesome/fonts";
 $roboto-font-path: "../node_modules/materialize-css/dist/fonts/roboto/";
-
 
 @import "../node_modules/font-awesome/scss/font-awesome";
 @import "../node_modules/normalize.css/normalize.css";
