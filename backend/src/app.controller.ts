@@ -1,13 +1,16 @@
-import { Controller, Get, HttpStatus, Param, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Param, Post, Res } from '@nestjs/common';
 import { AxiosResponse } from '@nestjs/common/http/interfaces/axios.interfaces';
-import { MovieService } from './services/movie.service';
-import { OmdbApiService } from './services/omdb-api.service';
 import { IMovieBase } from '../../interfaces/movie.base.interface';
 import { IMovie } from '../../interfaces/movie.interface';
+import { CommentService } from './services/comment.service';
+import { MovieService } from './services/movie.service';
+import { OmdbApiService } from './services/omdb-api.service';
 
 @Controller('movies')
 export class AppController {
-  constructor(private readonly omdbApi: OmdbApiService, private readonly movieService: MovieService) {
+  constructor(private readonly omdbApi: OmdbApiService,
+              private readonly movieService: MovieService,
+              private readonly commentService: CommentService,) {
   }
 
   @Get('search/:title')
@@ -44,5 +47,15 @@ export class AppController {
       let movieData: IMovie = movie.data;
       this.movieService.save(movie.data).then(value => res.status(HttpStatus.OK).json(value));
     });
+  }
+
+  @Post('comment')
+  public async saveComment(@Body() comment, @Res() res) {
+    this.commentService.save(comment).then(value => res.status(HttpStatus.OK).json(value));
+  }
+
+  @Get('comment/:movieId')
+  public async getCommentByMovieId(@Param('movieId') movieId, @Res() res) {
+    this.commentService.getCommentsByMovieId(movieId).then(value => res.status(HttpStatus.OK).json(value));
   }
 }

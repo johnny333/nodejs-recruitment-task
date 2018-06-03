@@ -8,6 +8,7 @@ import { movieProviders } from './models/movie.model.provider';
 import { MovieService } from './services/movie.service';
 import { OmdbApiService } from './services/omdb-api.service';
 import { PropertiesService } from './services/properties.service';
+import { CommentService } from './services/comment.service';
 @Module({
   imports: [
     HttpModule
@@ -22,7 +23,8 @@ import { PropertiesService } from './services/properties.service';
         await mongoose.connect('mongodb://localhost/movies'),
     },
     ...movieProviders,
-    MovieService
+    MovieService,
+    CommentService
   ]
 })
 export class AppModule implements NestModule {

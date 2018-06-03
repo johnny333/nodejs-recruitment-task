@@ -1,0 +1,55 @@
+<main>
+  <div class="row scrollable-content">
+    <div class="col s12 m2"  *ngFor="let movie of (this.moviesService.movies | async)" appMovieDetails [movieEntry]="movie">
+      <div class="card" >
+        <div class="card-image">
+          <img class="movie-image" [src]="movie?.Poster">
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="fixed-action-btn direction-top active">
+    <a id="menu" class="btn-floating btn-large teal accent-3 pulse" (click)="openModal()">
+      <i class="fa fa-plus"></i>
+    </a>
+  </div>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content modal-content-no-scrollable">
+      <h4>Dodaj nowe</h4>
+      <div class="row">
+        <div class="col s6 modal-search-list">
+          <div class="row  ">
+            <div class="input-field">
+              <input id="last_name" (input)="search($event.target.value)" type="text" class="validate">
+              <label for="last_name">Tytuł</label>
+            </div>
+          </div>
+          <table class="bordered collection">
+            <tbody>
+            <tr class="collection-item  {{ifActive(result)}}" (click)="chooeseMovie(result)" *ngFor="let result of searchResult">
+              <td> {{result.Title}}</td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="col s6 modal-search-list center-align" *ngIf="!!selectedMovie" style="position: relative">
+          <div class="col s12 " *ngIf="isPosterAvliable(selectedMovie)">
+            <img style="height: 300px;" [src]="selectedMovie?.Poster" alt="">
+          </div>
+          <div class="col s12" *ngIf="!isPosterAvliable(selectedMovie)">
+            <i class="fa fa-picture-o fa-10x" aria-hidden="true"></i>
+          </div>
+          <p>{{selectedMovie?.Title}}</p>
+          <p>{{selectedMovie?.Year}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+  </div>
+</footer>
