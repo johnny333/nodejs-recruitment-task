@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IComment } from '../../../../../interfaces/comment.interface';
 import { environment } from '../../../environments/environment';
+import { ToastService } from '../notification/toast.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentsService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private toastService:ToastService) {
   }
 
   public getByMovieId = (movieId: string) => {

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { IMovieBase } from '../../../../../../interfaces/movie.base.interface';
 import { MoviesService } from '../../../services/movies/movies.service';
-import { IMovie } from '../../../../../../interfaces/movie.interface';
+import { ToastService } from '../../../services/notification/toast.service';
 
 declare let $: any;
 @Component({
@@ -14,7 +13,7 @@ export class HomeComponent implements OnInit {
   public searchResult: Array<IMovieBase> = [];
   public selectedMovie: IMovieBase = null;
 
-  constructor(public moviesService: MoviesService) {
+  constructor(public moviesService: MoviesService,private toastService:ToastService) {
   }
 
   ngOnInit(): void {
@@ -52,8 +51,13 @@ export class HomeComponent implements OnInit {
 
   addNewMovie = () =>{
     if(!this.selectedMovie){
+      this.toastService.showMessage("Nie wybrano filmu");
       return;
     }
     this.moviesService.addByOmdbId(this.selectedMovie.imdbID);
+  }
+
+  isResultEmpty =() =>{
+    return  this.searchResult==null || this.searchResult.length==0;
   }
 }

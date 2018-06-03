@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommentsService } from './services/comments/comments.service';
 import { MoviesService } from './services/movies/movies.service';
+import { ToastService } from 'src/app/services/notification/toast.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { MoviesService } from './services/movies/movies.service';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [MoviesService, CommentsService],
+  providers: [MoviesService, CommentsService,ToastService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

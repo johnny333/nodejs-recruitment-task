@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/index';
 import { IMovie } from '../../../../../interfaces/movie.interface';
 import { environment } from '../../../environments/environment';
+import { ToastService } from '../notification/toast.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,7 @@ export class MoviesService {
 
   public movies: BehaviorSubject<Array<IMovie>>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private toastService:ToastService) {
     this.movies = new BehaviorSubject([]);
     this.getAll();
   }
@@ -31,6 +32,10 @@ export class MoviesService {
 
   public addByOmdbId = (omdbId: string) => {
     return this.http.post(`${environment.backend}/movies/omdbid/${omdbId}`, {}).subscribe((movie: IMovie) => {
+      if(movie==null){
+        this.toastService.showMessage("Film jest już w bazie");
+        return;
+      }
       this.movies.next([...this.movies.value, movie]);
     });
   }

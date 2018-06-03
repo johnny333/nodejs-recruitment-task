@@ -6,6 +6,8 @@ import { IMovieWithComments } from '../../../../../../interfaces/movie-with-comm
 import { IMovie } from '../../../../../../interfaces/movie.interface';
 import { CommentsService } from '../../../services/comments/comments.service';
 import { MoviesService } from '../../../services/movies/movies.service';
+import { ToastService } from '../../../services/notification/toast.service';
+import { IMovieBase } from '../../../../../../interfaces/movie.base.interface';
 declare let $;
 @Component({
   selector: 'app-details',
@@ -19,6 +21,7 @@ export class DetailsComponent implements OnInit {
 
   constructor(private moviesService: MoviesService,
               private commentsService: CommentsService,
+              private toastService:ToastService,
               private route: ActivatedRoute,
               private fb: FormBuilder) {
   }
@@ -32,11 +35,16 @@ export class DetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       let id = params['id'];
       this.moviesService.getByMovieWithCommentsId(id).subscribe((movieWithComments: IMovieWithComments) => {
-        console.log(movieWithComments)
         this.comments = movieWithComments.comments.reverse();
         this.movie = movieWithComments.movie;
       })
     });
+
+  }
+
+
+  isPosterAvliable = (movie: IMovieBase) => {
+    return movie.Poster != 'N/A';
 
   }
 
@@ -48,6 +56,7 @@ export class DetailsComponent implements OnInit {
       .subscribe((comment: IComment) => {
         this.comments = [comment].concat([...this.comments]);
         this.newCommentForm.reset();
+        this.toastService.showMessage('Komentarz został dodany')
       });
   }
 

@@ -7,6 +7,7 @@ import { MoviesService } from '../../services/movies/movies.service';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastService } from '../../services/notification/toast.service';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   declarations: [HomeComponent, MovieDetailsDirective],
-  providers: [MoviesService],
+  providers: [MoviesService,ToastService],
 
 })
 export class HomeModule {

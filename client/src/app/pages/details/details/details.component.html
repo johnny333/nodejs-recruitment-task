@@ -1,20 +1,24 @@
 <div *ngIf="!!movie">
   <div class="row">
     <div class="col s12 m3" style="color: white">
-      <div class="center-align col s12">
-        <img style="margin: auto" class="movie-image materialboxed" [src]="movie?.Poster">
+      <div class="column-fixed">
+        <div class="center-align col s12">
+          <img style="margin: auto" class="movie-image" *ngIf="isPosterAvliable(movie)" [src]="movie?.Poster">
+          <img class="image-center movie-image"   *ngIf="!isPosterAvliable(movie)" src="assets/images/emptystate.png" alt="">
+
+        </div>
+        <p>Tytuł: {{movie?.Title}}</p>
+        <p>Oceny: {{movie?.imdbRating}}</p>
+        <p>Długość: {{movie?.Runtime}}</p>
+        <p>Premiera: {{movie?.Released}}</p>
+        <p>Producent: {{movie?.Production}}</p>
+        <p>Reżyser: {{movie?.Director}}</p>
+        <p>Język: {{movie?.Language}}</p>
+        <p>Kraj: {{movie?.Country}}</p>
       </div>
-      <p>Tytuł: {{movie?.Title}}</p>
-      <p>Oceny: {{movie?.imdbRating}}</p>
-      <p>Długość: {{movie?.Runtime}}</p>
-      <p>Premiera: {{movie?.Released}}</p>
-      <p>Producent: {{movie?.Production}}</p>
-      <p>Reżyser: {{movie?.Director}}</p>
-      <p>Język: {{movie?.Language}}</p>
-      <p>Kraj: {{movie?.Country}}</p>
     </div>
-    <div class="col s12 m9">
-      <div class="row">
+    <div class="col s12 m9 ">
+      <div class="row details-info">
         <div class="col s12 ">
           <div class="card">
             <div class="card-content">

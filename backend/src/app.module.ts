@@ -29,8 +29,6 @@ import { PropertiesService } from './services/properties.service';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(CorsMiddleware)
-      .forRoutes('/*')
+    consumer.apply(CorsMiddleware).forRoutes('/*');
   }
 }

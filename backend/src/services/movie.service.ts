@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { IMovie } from '../../../interfaces/movie.interface';
-import { CommentService } from './comment.service';
 
 /**
  * Created by jakubkolecki on 01.06.2018.
@@ -21,7 +20,15 @@ export class MovieService {
     return await this.movieModel.findOne({ _id }).exec();
   }
 
+  public async getByOmdbId(imdbID: string): Promise<IMovie> {
+    return await this.movieModel.findOne({ imdbID }).exec();
+  }
+
   public async save(movie: IMovie): Promise<IMovie> {
+    const duplicat = await this.getByOmdbId(movie.imdbID);
+    if (duplicat != null) {
+      return null;
+    }
     const createdMovie = new this.movieModel(movie);
     return await createdMovie.save();
   }

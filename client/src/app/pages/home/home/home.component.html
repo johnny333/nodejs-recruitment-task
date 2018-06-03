@@ -1,7 +1,9 @@
 <div class="col s12 m2" *ngFor="let movie of (this.moviesService.movies | async)" appMovieDetails [movieEntry]="movie">
   <div class="card">
     <div class="card-image">
-      <img class="movie-image" [src]="movie?.Poster">
+      <img class="movie-image"  *ngIf="isPosterAvliable(movie)" [src]="movie?.Poster">
+      <img class="image-center movie-image"   *ngIf="!isPosterAvliable(movie)" src="assets/images/emptystate.png" alt="">
+
     </div>
   </div>
 </div>
@@ -23,31 +25,35 @@
               <label for="last_name">Tytuł</label>
             </div>
           </div>
-          <table class="bordered collection">
+          <table *ngIf="!isResultEmpty()" class="bordered collection">
             <tbody>
             <tr class="collection-item  {{ifActive(result)}}" (click)="chooeseMovie(result)" *ngFor="let result of searchResult">
               <td> {{result.Title}}</td>
             </tr>
             </tbody>
           </table>
-
         </div>
         <div class="col s6 modal-search-list center-align" *ngIf="!!selectedMovie" style="position: relative">
           <div class="col s12 " *ngIf="isPosterAvliable(selectedMovie)">
             <img style="height: 300px;" [src]="selectedMovie?.Poster" alt="">
           </div>
           <div class="col s12" *ngIf="!isPosterAvliable(selectedMovie)">
-            <i class="fa fa-picture-o fa-10x" aria-hidden="true"></i>
+            <img class="image-center"  src="assets/images/emptystate.png" alt="">
           </div>
           <p>{{selectedMovie?.Title}}</p>
           <p>{{selectedMovie?.Year}}</p>
         </div>
       </div>
+      <div class="row">
+        <img class="image-center" *ngIf="isResultEmpty()" src="assets/images/emptystate.png" alt="">
+
+      </div>
+
     </div>
     <div class="modal-footer">
       <div class="col s11"></div>
       <div class="col s1">
-        <a (click)="addNewMovie()" class="btn-floating modal-close btn-block">
+        <a (click)="addNewMovie()" class="btn-floating btn-block">
           <i class="fa fa-paper-plane-o "></i>
         </a>
       </div>
