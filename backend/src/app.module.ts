@@ -1,19 +1,19 @@
-import { HttpModule, Module, NestModule, RequestMethod } from '@nestjs/common';
-import { MiddlewaresConsumer } from '@nestjs/common/interfaces/middlewares';
+import { HttpModule, Module, NestModule } from '@nestjs/common';
+import { MiddlewareConsumer } from '@nestjs/common/interfaces/middleware';
 
 import * as mongoose from 'mongoose';
 import { AppController } from './app.controller';
+import { CommentsController } from './controllers/comments.controller';
+import { MoviesController } from './controllers/movies.controller';
 import { CorsMiddleware } from './middlewares/cors.middleware';
 import { movieProviders } from './models/movie.model.provider';
+import { CommentService } from './services/comment.service';
 import { MovieService } from './services/movie.service';
 import { OmdbApiService } from './services/omdb-api.service';
 import { PropertiesService } from './services/properties.service';
-import { CommentService } from './services/comment.service';
 @Module({
-  imports: [
-    HttpModule
-  ],
-  controllers: [AppController],
+  imports: [HttpModule],
+  controllers: [CommentsController, MoviesController, AppController],
   providers: [
     PropertiesService,
     OmdbApiService,
@@ -24,12 +24,13 @@ import { CommentService } from './services/comment.service';
     },
     ...movieProviders,
     MovieService,
-    CommentService
-  ]
+    CommentService,
+  ],
 })
 export class AppModule implements NestModule {
-  configure(consumer: MiddlewaresConsumer): MiddlewaresConsumer | void {
-    let path: any = '*';
-    consumer.apply([CorsMiddleware]).forRoutes('*')
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(CorsMiddleware)
+      .forRoutes('/*')
   }
 }

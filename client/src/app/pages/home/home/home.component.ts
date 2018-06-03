@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { IMovieBase } from '../../../../../../interfaces/movie.base.interface';
 import { MoviesService } from '../../../services/movies/movies.service';
+import { IMovie } from '../../../../../../interfaces/movie.interface';
 
 declare let $: any;
 @Component({
@@ -46,5 +48,12 @@ export class HomeComponent implements OnInit {
   isPosterAvliable = (movie: IMovieBase) => {
     return movie.Poster != 'N/A';
 
+  }
+
+  addNewMovie = () =>{
+    if(!this.selectedMovie){
+      return;
+    }
+    this.moviesService.addByOmdbId(this.selectedMovie.imdbID);
   }
 }

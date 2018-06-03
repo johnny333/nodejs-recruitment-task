@@ -22,8 +22,8 @@ export const MovieSchema = new mongoose.Schema({
   Ratings: [
     {
       Source: String,
-      Value: String
-    }
+      Value: String,
+    },
   ],
   Metascore: String,
   imdbRating: String,
@@ -32,5 +32,5 @@ export const MovieSchema = new mongoose.Schema({
   BoxOffice: String,
   Production: String,
   Website: String,
-  Response: String
+  Response: String,
 });

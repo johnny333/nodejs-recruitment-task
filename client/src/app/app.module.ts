@@ -5,13 +5,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { DetailsComponent } from './components/details/details.component';
+import { CommentsService } from './services/comments/comments.service';
 import { MoviesService } from './services/movies/movies.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DetailsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +18,7 @@ import { MoviesService } from './services/movies/movies.service';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [MoviesService],
+  providers: [MoviesService, CommentsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

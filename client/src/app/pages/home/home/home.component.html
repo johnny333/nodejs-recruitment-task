@@ -1,17 +1,13 @@
-<main>
-  <div class="row scrollable-content">
-    <div class="col s12 m2"  *ngFor="let movie of (this.moviesService.movies | async)" appMovieDetails [movieEntry]="movie">
-      <div class="card" >
-        <div class="card-image">
-          <img class="movie-image" [src]="movie?.Poster">
-        </div>
-      </div>
+<div class="col s12 m2" *ngFor="let movie of (this.moviesService.movies | async)" appMovieDetails [movieEntry]="movie">
+  <div class="card">
+    <div class="card-image">
+      <img class="movie-image" [src]="movie?.Poster">
     </div>
   </div>
-</main>
+</div>
 <footer>
   <div class="fixed-action-btn direction-top active">
-    <a id="menu" class="btn-floating btn-large teal accent-3 pulse" (click)="openModal()">
+    <a id="menu" class="btn-floating btn-large  pulse" (click)="openModal()">
       <i class="fa fa-plus"></i>
     </a>
   </div>
@@ -49,7 +45,12 @@
       </div>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+      <div class="col s11"></div>
+      <div class="col s1">
+        <a (click)="addNewMovie()" class="btn-floating modal-close btn-block">
+          <i class="fa fa-paper-plane-o "></i>
+        </a>
+      </div>
     </div>
   </div>
 </footer>

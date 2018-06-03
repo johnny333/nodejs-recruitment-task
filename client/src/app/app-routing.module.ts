@@ -8,7 +8,7 @@ import { HomeModule } from './pages/home/home.module';
  */
 const routes: Routes = [
   {path: 'home', loadChildren: () => HomeModule},
-  {path: 'details', loadChildren: () => DetailsModule},
+  {path: 'movie', loadChildren: () => DetailsModule},
   {path: '**', redirectTo: 'home'},
 ];
 

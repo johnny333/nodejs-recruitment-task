@@ -6,5 +6,5 @@ export interface IComment {
   Comment: string;
   Nick: string;
   MovieID: string;
-  Date: Date;
+  Date?: Date;
 }

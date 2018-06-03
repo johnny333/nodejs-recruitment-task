@@ -6,7 +6,7 @@ export const CommentSchema = new mongoose.Schema({
   Nick: String,
   Comment: String,
   MovieID: String,
-  Date: Date
+  Date: Date,
 });
 /**
  * Created by jakubkolecki on 03.06.2018.

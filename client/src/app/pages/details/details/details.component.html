@@ -1,3 +1,80 @@
-<p>
-  details works!
-</p>
+<div *ngIf="!!movie">
+  <div class="row">
+    <div class="col s12 m3" style="color: white">
+      <div class="center-align col s12">
+        <img style="margin: auto" class="movie-image materialboxed" [src]="movie?.Poster">
+      </div>
+      <p>Tytuł: {{movie?.Title}}</p>
+      <p>Oceny: {{movie?.imdbRating}}</p>
+      <p>Długość: {{movie?.Runtime}}</p>
+      <p>Premiera: {{movie?.Released}}</p>
+      <p>Producent: {{movie?.Production}}</p>
+      <p>Reżyser: {{movie?.Director}}</p>
+      <p>Język: {{movie?.Language}}</p>
+      <p>Kraj: {{movie?.Country}}</p>
+    </div>
+    <div class="col s12 m9">
+      <div class="row">
+        <div class="col s12 ">
+          <div class="card">
+            <div class="card-content">
+              <p>Pisaż: {{movie?.Writer}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 ">
+          <div class="card">
+            <div class="card-content">
+              <p>Aktorzy: {{movie?.Actors}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 ">
+          <div class="card">
+            <div class="card-content">
+              <p>{{movie?.Genre}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 ">
+          <div class="card">
+            <div class="card-content">
+              <p>{{movie?.Plot}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 ">
+          <div class="card">
+            <div class="card-content">
+              <p>{{movie?.BoxOffice}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <form [formGroup]="newCommentForm" (submit)="addComment()" class="col s12">
+          <div class="input-field col s11">
+            <textarea style="color: white" formControlName="Comment" id="textarea1" class="materialize-textarea"></textarea>
+            <label for="textarea1">Komentarz</label>
+          </div>
+          <div class="col s1">
+            <button type="submit" class="btn-floating btn-large" style="margin-top: 70%">
+              <i class="fa fa-paper-plane-o"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="row">
+        <div>
+          <div *ngFor="let comment of comments" class="chip">
+            <img src="https://materializecss.com/images/yuna.jpg" alt="Contact Person">
+            {{comment.Comment}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

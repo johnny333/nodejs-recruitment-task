@@ -16,8 +16,8 @@ export class MovieDetailsDirective {
   }
 
   @HostListener('click', ['$event']) onClick($event) {
-    console.log("test directive", this._movieEntry)
-    this.router.navigate([`/details/movie/{${this._movieEntry._id}`])
+    localStorage.setItem("movie-details",JSON.stringify(this._movieEntry));
+    this.router.navigate([`movie`,`details`,this._movieEntry._id])
 
   }
 }

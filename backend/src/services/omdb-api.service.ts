@@ -11,21 +11,23 @@ import { IMovie } from '../../../interfaces/movie.interface';
 
 @Injectable()
 export class OmdbApiService {
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly properties: PropertiesService,
+  ) {}
 
-  constructor(private readonly httpService: HttpService,
-              private readonly properties: PropertiesService) {
-  }
-
-  public findMoviesByTitle(title: string): Observable<AxiosResponse<{ Search: Array<IMovieBase>}>> {
-    return this.httpService.get(`${this.properties.getOmbApiURL()}&s=${title}`)
+  public findMoviesByTitle(
+    title: string,
+  ): Observable<AxiosResponse<{ Search: Array<IMovieBase> }>> {
+    return this.httpService.get(`${this.properties.getOmbApiURL()}&s=${title}`);
   }
 
   public findMovieByTitle(title: string): Observable<AxiosResponse<IMovie>> {
     return this.httpService.get(`${this.properties.getOmbApiURL()}&t=${title}`);
   }
   public getMovieByOmdbId(omdbId: string): Observable<AxiosResponse<IMovie>> {
-
-    return this.httpService.get(`${this.properties.getOmbApiURL()}&i=${omdbId}`);
+    return this.httpService.get(
+      `${this.properties.getOmbApiURL()}&i=${omdbId}`,
+    );
   }
-
 }

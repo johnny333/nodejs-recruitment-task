@@ -8,6 +8,6 @@ export class PropertiesService {
   private omdbUrl = 'http://www.omdbapi.com';
   private omdbApikey = 'eb9b8329';
   public getOmbApiURL = () => {
-    return `${this.omdbUrl}/?apikey=${this.omdbApikey}`
-  }
+    return `${this.omdbUrl}/?apikey=${this.omdbApikey}`;
+  };
 }

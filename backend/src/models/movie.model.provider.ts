@@ -7,11 +7,14 @@ import { MovieSchema } from '../schemas/movie.schema';
 export const movieProviders = [
   {
     provide: 'movieModel',
-    useFactory: (connection: Connection) => connection.model('Movie', MovieSchema),
+    useFactory: (connection: Connection) =>
+      connection.model('Movie', MovieSchema),
     inject: ['DbConnectionToken'],
-  }, {
+  },
+  {
     provide: 'commentModel',
-    useFactory: (connection: Connection) => connection.model('Comment', CommentSchema),
+    useFactory: (connection: Connection) =>
+      connection.model('Comment', CommentSchema),
     inject: ['DbConnectionToken'],
-  }
+  },
 ];
