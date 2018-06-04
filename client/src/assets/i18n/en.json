@@ -1,0 +1,19 @@
+{
+  "logo": "MovieInfo",
+  "title": "Title",
+  "rating": "Rating",
+  "runtime": "Runtime",
+  "released": "Released",
+  "production": "Production",
+  "director": "Director",
+  "language": "Language",
+  "country": "Country",
+  "comment": "Comment",
+  "addNew": "Add new",
+  "writer":"Writer",
+  "actors":"Actors",
+  "addedNewComment":"Added new comment",
+  "noMovieSelected":"No movie selected",
+  "thisMovieExistInBase":"this movie exist in base",
+  "newMovieAdded":"New movie added"
+}

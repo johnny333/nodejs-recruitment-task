@@ -4,17 +4,17 @@
       <div class="column-fixed">
         <div class="center-align col s12">
           <img style="margin: auto" class="movie-image" *ngIf="isPosterAvliable(movie)" [src]="movie?.Poster">
-          <img class="image-center movie-image"   *ngIf="!isPosterAvliable(movie)" src="assets/images/emptystate.png" alt="">
+          <img class="image-center movie-image" *ngIf="!isPosterAvliable(movie)" src="assets/images/emptystate.png" alt="">
 
         </div>
-        <p>Tytuł: {{movie?.Title}}</p>
-        <p>Oceny: {{movie?.imdbRating}}</p>
-        <p>Długość: {{movie?.Runtime}}</p>
-        <p>Premiera: {{movie?.Released}}</p>
-        <p>Producent: {{movie?.Production}}</p>
-        <p>Reżyser: {{movie?.Director}}</p>
-        <p>Język: {{movie?.Language}}</p>
-        <p>Kraj: {{movie?.Country}}</p>
+        <p>{{"title" | translate}}: {{movie?.Title}}</p>
+        <p>{{"rating" | translate}}: {{movie?.imdbRating}}</p>
+        <p>{{"runtime" | translate}}: {{movie?.Runtime}}</p>
+        <p>{{"released" | translate}}: {{movie?.Released}}</p>
+        <p>{{"production" | translate}}: {{movie?.Production}}</p>
+        <p>{{"director" | translate}}: {{movie?.Director}}</p>
+        <p>{{"language" | translate}}: {{movie?.Language}}</p>
+        <p>{{"country" | translate}}: {{movie?.Country}}</p>
       </div>
     </div>
     <div class="col s12 m9 ">
@@ -22,35 +22,14 @@
         <div class="col s12 ">
           <div class="card">
             <div class="card-content">
-              <p>Pisaż: {{movie?.Writer}}</p>
+              <p>{{"writer" | translate}}: {{movie?.Writer}}</p>
             </div>
           </div>
         </div>
         <div class="col s12 ">
           <div class="card">
             <div class="card-content">
-              <p>Aktorzy: {{movie?.Actors}}</p>
-            </div>
-          </div>
-        </div>
-        <div class="col s12 ">
-          <div class="card">
-            <div class="card-content">
-              <p>{{movie?.Genre}}</p>
-            </div>
-          </div>
-        </div>
-        <div class="col s12 ">
-          <div class="card">
-            <div class="card-content">
-              <p>{{movie?.Plot}}</p>
-            </div>
-          </div>
-        </div>
-        <div class="col s12 ">
-          <div class="card">
-            <div class="card-content">
-              <p>{{movie?.BoxOffice}}</p>
+              <p>{{"actors" | translate}}: {{movie?.Actors}}</p>
             </div>
           </div>
         </div>
@@ -59,7 +38,7 @@
         <form [formGroup]="newCommentForm" (submit)="addComment()" class="col s12">
           <div class="input-field col s11">
             <textarea style="color: white" formControlName="Comment" id="textarea1" class="materialize-textarea"></textarea>
-            <label for="textarea1">Komentarz</label>
+            <label for="textarea1" translate="comment"></label>
           </div>
           <div class="col s1">
             <button type="submit" class="btn-floating btn-large" style="margin-top: 70%">
@@ -72,7 +51,7 @@
       <div class="row">
         <div>
           <div *ngFor="let comment of comments" class="chip">
-            <img src="https://materializecss.com/images/yuna.jpg" alt="Contact Person">
+            <img src="https://materializecss.com/images/yuna.jpg" >
             {{comment.Comment}}
           </div>
         </div>

@@ -16,13 +16,13 @@
   <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content modal-content-no-scrollable">
-      <h4>Dodaj nowe</h4>
+      <h4 translate="addNew"></h4>
       <div class="row">
         <div class="col s6 modal-search-list">
           <div class="row  ">
             <div class="input-field">
               <input id="last_name" (input)="search($event.target.value)" type="text" class="validate">
-              <label for="last_name">Tytuł</label>
+              <label for="last_name" translate="title"></label>
             </div>
           </div>
           <table *ngIf="!isResultEmpty()" class="bordered collection">

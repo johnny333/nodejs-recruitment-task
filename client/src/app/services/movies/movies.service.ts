@@ -33,9 +33,10 @@ export class MoviesService {
   public addByOmdbId = (omdbId: string) => {
     return this.http.post(`${environment.backend}/movies/omdbid/${omdbId}`, {}).subscribe((movie: IMovie) => {
       if(movie==null){
-        this.toastService.showMessage("Film jest już w bazie");
+        this.toastService.showMessage("thisMovieExistInBase");
         return;
       }
+      this.toastService.showMessage("newMovieAdded");
       this.movies.next([...this.movies.value, movie]);
     });
   }

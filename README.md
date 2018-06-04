@@ -31,3 +31,8 @@ We’d like you to build simple REST API for us - a basic movie database interac
 * Written application must be hosted and publicly available for us online - we recommend [Heroku](https://heroku.com).
 
 **Good luck! If you have any questions feel free to ping us!**
+
+
+TO run app you should have docker with docker-compose, yarn and one of unix os.
+Then you can exec "sh run.sh" to run app. 
+UI is available at port 4200, and backend at port 3000.

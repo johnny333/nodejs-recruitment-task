@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { IMovieBase } from '../../../interfaces/movie.base.interface';
 import { MoviesService } from './services/movies/movies.service';
 declare let $: any;
@@ -8,15 +9,15 @@ declare let $: any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
   public searchResult: Array<IMovieBase> = [];
   public selectedMovie: IMovieBase = null;
 
-  constructor(public moviesService: MoviesService) {
+  constructor(public moviesService: MoviesService, private translate: TranslateService) {
+    translate.setDefaultLang('en');
+    translate.use('en');
   }
 
   ngOnInit(): void {
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.carousel').carousel();
     $('.modal').modal();
   }

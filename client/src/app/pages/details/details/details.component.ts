@@ -56,7 +56,7 @@ export class DetailsComponent implements OnInit {
       .subscribe((comment: IComment) => {
         this.comments = [comment].concat([...this.comments]);
         this.newCommentForm.reset();
-        this.toastService.showMessage('Komentarz został dodany')
+        this.toastService.showMessage('addedNewComment')
       });
   }
 

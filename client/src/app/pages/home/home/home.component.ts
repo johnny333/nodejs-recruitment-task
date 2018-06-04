@@ -23,6 +23,9 @@ export class HomeComponent implements OnInit {
   public openModal() {
     $('#modal1').modal('open');
   }
+  public closeModal() {
+    $('#modal1').modal('close');
+  }
 
   search = (title: string) => {
     if (title == null || title.length == 0) {
@@ -51,10 +54,12 @@ export class HomeComponent implements OnInit {
 
   addNewMovie = () =>{
     if(!this.selectedMovie){
-      this.toastService.showMessage("Nie wybrano filmu");
+      this.toastService.showMessage("noMovieSelected");
       return;
     }
     this.moviesService.addByOmdbId(this.selectedMovie.imdbID);
+    this.closeModal();
+    return;
   }
 
   isResultEmpty =() =>{
